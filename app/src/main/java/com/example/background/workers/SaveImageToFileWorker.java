@@ -11,6 +11,8 @@ import androidx.work.WorkerParameters;
  */
 public class SaveImageToFileWorker extends Worker {
 
+    private static final String TAG = SaveImageToFileWorker.class.getSimpleName();
+
     public SaveImageToFileWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }

@@ -11,6 +11,8 @@ import androidx.work.WorkerParameters;
  */
 public class CleanUpWorker extends Worker {
 
+    private static final String TAG = CleanUpWorker.class.getSimpleName();
+
     public CleanUpWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }

@@ -17,7 +17,7 @@ import androidx.work.WorkerParameters;
  */
 public class BlurWorker extends Worker {
 
-    private static final String TAG = "BlurWorker";
+    private static final String TAG = BlurWorker.class.getSimpleName();
 
     public BlurWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
