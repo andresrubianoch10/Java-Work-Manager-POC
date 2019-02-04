@@ -1,10 +1,12 @@
 package com.example.background.workers;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.example.background.Constants;
@@ -33,9 +35,17 @@ public class BlurWorker extends Worker {
 
         try {
 
-            Bitmap picture = BitmapFactory.decodeResource(
-                    context.getResources(),
-                    R.drawable.test);
+//            Bitmap picture = BitmapFactory.decodeResource(
+//                    context.getResources(),
+//                    R.drawable.test);
+            if (TextUtils.isEmpty(resourceUri)) {
+                Log.e(TAG, "Invalid input URI");
+                throw new IllegalArgumentException("Invalid input URI");
+            }
+
+            ContentResolver contentResolver = context.getContentResolver();
+            Bitmap picture = BitmapFactory.decodeStream(
+                    contentResolver.openInputStream(Uri.parse(resourceUri)));
 
             Bitmap output = WorkerUtils.blurBitmap(picture, context);
 
