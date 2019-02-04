@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.background.Constants;
 import com.example.background.R;
 
 import androidx.work.Worker;
@@ -28,6 +29,7 @@ public class BlurWorker extends Worker {
     public Worker.Result doWork() {
 
         Context context = getApplicationContext();
+        String resourceUri = getInputData().getString(Constants.KEY_IMAGE_URI);
 
         try {
 
