@@ -22,6 +22,7 @@ import android.text.TextUtils;
 
 import com.example.background.workers.BlurWorker;
 
+import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
 public class BlurViewModel extends ViewModel {
@@ -38,7 +39,7 @@ public class BlurViewModel extends ViewModel {
      * @param blurLevel The amount to blur the image
      */
     void applyBlur(int blurLevel) {
-
+        mWorkManager.enqueue(OneTimeWorkRequest.from(BlurWorker.class));
     }
 
     private Uri uriOrNull(String uriString) {
