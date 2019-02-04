@@ -20,11 +20,17 @@ import android.arch.lifecycle.ViewModel;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.example.background.workers.BlurWorker;
+
+import androidx.work.WorkManager;
+
 public class BlurViewModel extends ViewModel {
 
     private Uri mImageUri;
+    private WorkManager mWorkManager;
 
     public BlurViewModel() {
+        mWorkManager = WorkManager.getInstance();
     }
 
     /**
