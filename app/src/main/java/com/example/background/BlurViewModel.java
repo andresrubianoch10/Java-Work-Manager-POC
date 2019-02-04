@@ -22,6 +22,7 @@ import android.text.TextUtils;
 
 import com.example.background.workers.BlurWorker;
 
+import androidx.work.Data;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
@@ -47,6 +48,14 @@ public class BlurViewModel extends ViewModel {
             return Uri.parse(uriString);
         }
         return null;
+    }
+
+    private Data createInputDataForUri() {
+        Data.Builder builder = new Data.Builder();
+        if (mImageUri != null) {
+            builder.putString(Constants.KEY_IMAGE_URI, mImageUri.toString());
+        }
+        return builder.build();
     }
 
     /**
