@@ -12,6 +12,7 @@ import android.util.Log;
 import com.example.background.Constants;
 import com.example.background.R;
 
+import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
@@ -54,7 +55,11 @@ public class BlurWorker extends Worker {
             WorkerUtils.makeStatusNotification(
                     "Output is " + outputUri.toString(), context);
 
-            return Result.success();
+            Data outputData = new Data.Builder()
+                    .putString(Constants.KEY_IMAGE_URI, outputUri.toString())
+                    .build();
+
+            return Result.success(outputData);
         } catch (Throwable throwable) {
 
             Log.e(TAG, "Error applying blur", throwable);
